@@ -1,0 +1,17 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Eliminar cuenta</h5>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h6>¿Desea eliminar la cuenta {{currentAccount.accountNumber}}?</h6>
+        <small class="invalid-color-red">{{genericError}}</small>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="activeModal.dismiss('Close click')">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="delete()">Si, eliminar</button>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+
+.card-body{
+    background-color: #fafbfc;
+}
+
+.table{
+    background-color: white;
+}
+
+thead{
+    background-color: #fafbfc;
+}
+
+h4, h5 , th {
+    color:#424949
+}
+
+.btn{
+    border-radius: 1.25rem !important;
+}
+
+.btn-primary{
+    background-color: #f06923 !important;
+    border-color: #f06923 !important;
+}
+
+.btn-outline-primary {
+    border-color: #f06923 !important;
+    color: #f06923 !important;
+}
+
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #f06923 !important;
+    border-color: #f06923 !important;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #fafbfc;
+}
+
+.table .action-icon {
+    color: gray;
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: 0 3px;
+}
+
+.cursor-pointer{
+    cursor: pointer !important;
+}
+
+.feather-icon {
+    color:#424949
+}
+
+.align-right{
+    text-align: right;
+}
+
+.balance-color-gray{
+    color: gray;
+}
+
+.modal-header{
+    border-bottom: 4px solid #f06923 !important;
+}
+
+button:focus {outline:0 !important}
+
+i-feather.feather-icon.big {
+    height: 70px !important;
+    width: 70px !important;
+    margin-top: 30px;
+}
+
+
+i-feather.feather-icon.small {
+    height: 34px !important;
+    width: 34px !important;
+    padding-right: 15px;
+}
+
+ .ng-invalid small{
+    color: #dc3545;
+} 
+
+.invalid-color-red{
+    color: #dc3545;
+}
+
+.btn-link{
+    text-decoration: none !important;
+    color:#424949 !important;
+}
+
+textarea {
+    resize: none !important;
+}

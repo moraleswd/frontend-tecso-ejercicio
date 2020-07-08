@@ -1,0 +1,39 @@
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <h4>Cuenta Corriente</h4>
+            <button class="btn btn-primary" (click)="create()">Agregar cuenta</button>
+        </div>
+        <div class="card border-top-orange-4 mt-2">
+            <div class="card-body padding-top-0">
+                <table *ngIf="listAccounts" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Número de cuenta</th>
+                        <th scope="col">Moneda</th>
+                        <th scope="col">Saldo</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let account of listAccounts">
+                        <td>{{account.accountNumber}}</td>
+                        <td>{{account.currencyType.name}}</td>
+                        <td>{{account.balance | currency: account.currencyType.code :'symbol-narrow'}}</td>
+                        <td class="align-right">
+                            <a class="cursor-pointer" (click)="detail(account)"><i-feather name="eye" class="feather-icon small"></i-feather></a>
+                            <a class="cursor-pointer" (click)="edit(account)"><i-feather name="edit" class="feather-icon small"></i-feather></a>
+                            <a class="cursor-pointer" (click)="delete(account)"><i-feather name="trash2" class="feather-icon small"></i-feather></a>
+                            <button type="button" class="btn btn-outline-primary" [routerLink]="['/movements', account.id]">Movimientos</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table> 
+                <div *ngIf="!listAccounts" class="text-center">
+                    <i-feather name="alert-circle" class="feather-icon big"></i-feather>
+                    <h5 class="card-title">No hay cuentas creadas!</h5>
+                    <p class="card-text">Agregue una mediante el boton de la esquina superior</p>
+                </div>
+            </div>
+          </div>
+    </div>

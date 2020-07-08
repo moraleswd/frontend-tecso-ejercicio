@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="editModalLabel">{{title}}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form [formGroup]="currentAccountForm">
+        <div class="row">
+          <div class="col-8">
+            <label for="accountNumber">Número de cuenta:</label>
+            <input id="accountNumber" type="text" class="form-control" formControlName="accountNumber" placeholder="Número de cuenta">
+            <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)">
+              <div *ngIf="accountNumber.errors.required">
+                <small>Número de cuenta es obligatorio.</small>
+              </div>
+              <div *ngIf="accountNumber.errors.maxlength">
+                <small>Número de cuenta puede tener hasta 50 caracteres.</small>
+              </div>
+            </div>
+            <div *ngIf="accountNumber.invalid && accountNumber.errors.generic">
+              <small>{{genericError}}</small>
+            </div>
+          </div>
+          <div class="col-4 form-group">
+            <label for="currencyType">Tipo de Moneda: </label>
+            <select [compareWith]="compareFn" id="currencyType" class="form-control" formControlName="currencyType" >
+              <option *ngFor="let op of listCurrency" [ngValue]="op">{{op.name}}</option>
+            </select>
+            <div *ngIf="(currencyType.invalid && (currencyType.dirty || currencyType.touched))">
+              <div *ngIf="currencyType.errors.required">
+                <small>Tipo de moneda es obligatorio.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="activeModal.dismiss('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="!currentAccountForm.valid && !accountNumber.errors.generic">{{action}}</button>
+  </div>

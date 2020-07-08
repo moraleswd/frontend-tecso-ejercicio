@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="editModalLabel">{{title}}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form [formGroup]="movementForm">
+        <div class="row">
+          <div class="col-4 form-group">
+            <label for="movementType">Tipo de Movimiento: </label>
+            <select [compareWith]="compareFn" id="movementType" class="form-control" formControlName="movementType" >
+              <option *ngFor="let mt of listMovementType" [ngValue]="mt">{{mt.name}}</option>
+            </select>
+            <div *ngIf="movementType.invalid && (movementType.dirty || movementType.touched)">
+              <div *ngIf="movementType.errors.required">
+                <small>Tipo de movimiento es obligatorio.</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-8">
+            <label for="amount">Importe:</label>
+            <input id="amount" type="number" class="form-control" formControlName="amount" placeholder="Importe">
+            <div *ngIf="amount.invalid && (amount.dirty || amount.touched)">
+              <div *ngIf="amount.errors.required">
+                <small>Importe es obligatorio.</small>
+              </div>
+              <div *ngIf="amount.errors.pattern">
+                <small>El formato del importe es inválido.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+              <label for="description">Descripción:</label>
+              <textarea class="form-control" rows="3" formControlName="description" placeholder="Descripción"></textarea>
+              <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                <div *ngIf="description.errors.required">
+                  <small>Descripción es obligatoria.</small>
+                </div>
+                <div *ngIf="description.errors.maxlength">
+                  <small>Descripción puede tener hasta 200 caracteres.</small>
+                </div>
+              </div>
+              <div *ngIf="description.invalid && description.errors.generic">
+                <small>{{genericError}}</small>
+              </div>
+            </div>
+        </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="activeModal.dismiss('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="!movementForm.valid && !description.errors.generic">{{action}}</button>
+  </div>

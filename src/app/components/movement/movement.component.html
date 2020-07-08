@@ -1,0 +1,39 @@
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <h4>Movimientos</h4>
+            <div>
+                <button class="btn btn-link" (click)="goBack()"><i-feather name="arrow-left" class="feather-icon"></i-feather>Volver</button>
+                <button class="btn btn-primary" (click)="create()">Agregar Movimiento</button>
+            </div>
+        </div>
+        <div class="card border-top-orange-4 mt-2">
+            <div class="card-body padding-top-0">
+                <table *ngIf="listMovements && listMovements.length > 0" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo de Movimiento</th>
+                        <th scope="col">Importe</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let movement of listMovements">
+                        <td>{{movement.movementDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                        <td>{{movement.movementType.name}}</td>
+                        <td>{{movement.amount | currency: movement.currentAccount.currencyType.code :'symbol-narrow'}}</td>
+                        <td class="align-right">
+                            <a class="cursor-pointer" (click)="detail(movement)"><i-feather name="eye" class="feather-icon small"></i-feather></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="!listMovements || listMovements.length == 0" class="text-center">
+                    <i-feather name="alert-circle" class="feather-icon big"></i-feather>
+                    <h5 class="card-title">No hay movimientos asociados!</h5>
+                    <p class="card-text">Agregue uno mediante el boton de la esquina superior</p>
+                </div>
+            </div>
+          </div>
+    </div>

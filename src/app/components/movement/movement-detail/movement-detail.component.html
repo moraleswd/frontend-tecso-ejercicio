@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Movimiento {{movement.id}}</h5>
+  <button type="button" class="close" (click)="activeModal.dismiss('Cross click')" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col">
+      <h6> Tipo de Movimiento:</h6> <h5 class="balance-color-gray">{{movement?.movementType.name}}</h5>
+    </div>
+    <div class="col">
+      <h6> Importe:</h6> <h5 class="balance-color-gray">{{movement?.amount | currency: movement.currentAccount.currencyType.code :'symbol-narrow'}}</h5>
+    </div>
+    <div class="col">
+      <h6> Fecha:</h6> <h5 class="balance-color-gray">{{movement.movementDate | date: 'dd/MM/yyyy hh:mm:ss'}}</h5>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <h6> Descripción:</h6> <textarea class="form-control" rows="3" readonly disabled [(ngModel)]="movement.description"></textarea>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-primary" (click)="activeModal.close('Close click')">Cerrar</button>
+</div>
